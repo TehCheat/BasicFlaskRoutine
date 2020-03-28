@@ -157,8 +157,8 @@ namespace TreeRoutine.DefaultBehaviors.Helpers
 
                 if (mod.Name == "FlaskEffectNotRemovedOnFullMana")
                 {
-                    flask.RemovedWhenFull = false;
-                    flask.BuffString2 = "flask_effect_mana_not_removed_when_full";
+					flask.RemovedWhenFull = false;
+					flask.BuffString2 = "flask_effect_not_removed_on_full_mana";
                 }
 
                 //Checking flask mods.
