@@ -153,10 +153,7 @@ namespace TreeRoutine.Routine.BasicFlaskRoutine
             return new Decorator((x => PlayerHelper.isManaBelowPercentage(Settings.InstantManaPotion)),
                 new PrioritySelector(
                     CreateUseFlaskAction(FlaskActions.Mana, true, true),
-                    CreateUseFlaskAction(FlaskActions.Hybrid, true, true),
-                    CreateUseFlaskAction(FlaskActions.Mana),
-                    CreateUseFlaskAction(FlaskActions.Hybrid)
-
+                    CreateUseFlaskAction(FlaskActions.Hybrid, true, true)
                 )
             );
         }
