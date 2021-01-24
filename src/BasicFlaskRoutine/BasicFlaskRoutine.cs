@@ -254,7 +254,10 @@ namespace TreeRoutine.Routine.BasicFlaskRoutine
                     if (!monster.HasComponent<Monster>() || !monster.IsValid || !monster.IsAlive || !monster.IsHostile)
                         continue;
 
-                    var monsterType = monster.GetComponent<ObjectMagicProperties>().Rarity;
+                    ObjectMagicProperties omp = monster.GetComponent<ObjectMagicProperties>();
+                    if (omp == null)
+                        continue;
+                    var monsterType = omp.Rarity;
 
                     // Don't count this monster type if we are ignoring it
                     if (monsterType == MonsterRarity.White && !countNormal
