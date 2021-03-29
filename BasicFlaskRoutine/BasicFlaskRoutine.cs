@@ -108,21 +108,25 @@ namespace TreeRoutine.Routine.BasicFlaskRoutine
 
         private void UpdatePlayerMovingStopwatch()
         {
-            var player = GameController.Player.GetComponent<Actor>();
-            if (player != null && player.Address != 0 && player.isMoving 
-                || (player.isAttacking && isTravelingSkill(player.CurrentAction.Skill)) )
+            try
             {
-                if (!PlayerMovingStopwatch.IsRunning)
-                    PlayerMovingStopwatch.Start();
+                var player = GameController.Player.GetComponent<Actor>();
+                if (player != null && player.Address != 0 && player.isMoving || (player.isAttacking && isTravelingSkill(player.CurrentAction?.Skill)))
+                {
+                    if (!PlayerMovingStopwatch.IsRunning)
+                        PlayerMovingStopwatch.Start();
+                }
+                else
+                {
+                    PlayerMovingStopwatch.Reset();
+                }
             }
-            else
-            {
-                PlayerMovingStopwatch.Reset();
-            }
+            catch (Exception) { }
         }
 
         private bool isTravelingSkill(ActorSkill skill)
         {
+            if (skill == null) return false;
             return travelingSkills.Contains(skill.EffectsPerLevel.SkillGemWrapper.ActiveSkill.DisplayName);
         }
 
@@ -478,7 +482,7 @@ namespace TreeRoutine.Routine.BasicFlaskRoutine
                     if (dictionary.TryGetValue(buff.Name, out filterId))
                     {
                         // I'm not sure what the values are here, but this is the effective logic from the old plugin
-                        return (filterId == 0 || filterId != 1) && (minCharges == null || buff.Charges >= minCharges());
+                        return (filterId == 0 || filterId != 1) && (minCharges == null || buff.BuffCharges >= minCharges());
                     }
                 }
                 return false;

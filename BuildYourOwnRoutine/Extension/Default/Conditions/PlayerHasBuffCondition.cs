@@ -96,13 +96,13 @@ namespace TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions
                     if (foundBuff != null)
                     {
                         extensionParameter.Plugin.LogMessage(
-                            $"Found buff {HasBuffReady}. Timer: {foundBuff.Timer} (eval:{(foundBuff.Timer >= RemainingDuration * 1000)}) Charges: {foundBuff.Charges} (eval:{(foundBuff.Charges >= MinimumCharges)})");
+                            $"Found buff {HasBuffReady}. Timer: {foundBuff.Timer} (eval:{(foundBuff.Timer >= RemainingDuration * 1000)}) Charges: {foundBuff.BuffCharges} (eval:{(foundBuff.BuffCharges >= MinimumCharges)})");
                     }
                     else extensionParameter.Plugin.LogMessage($"Buff {HasBuffReady} not found.");
 
                 }
 
-                return extensionParameter.Plugin.GameController.Game.IngameState.Data.LocalPlayer.Buffs.Any(x => x.Name == HasBuffReady && (x.Timer >= (1.0 * RemainingDuration / 1000)) && x.Charges >= MinimumCharges);
+                return extensionParameter.Plugin.GameController.Game.IngameState.Data.LocalPlayer.Buffs.Any(x => x.Name == HasBuffReady && (x.Timer >= (1.0 * RemainingDuration / 1000)) && x.BuffCharges >= MinimumCharges);
             };
         }
 
