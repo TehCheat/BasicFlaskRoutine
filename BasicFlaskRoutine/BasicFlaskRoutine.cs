@@ -110,7 +110,7 @@ namespace TreeRoutine.Routine.BasicFlaskRoutine
         {
             try
             {
-                var player = GameController.Player.GetComponent<Actor>();
+                var player = GameController.Player?.GetComponent<Actor>();
                 if (player != null && player.Address != 0 && player.isMoving || (player.isAttacking && isTravelingSkill(player.CurrentAction?.Skill)))
                 {
                     if (!PlayerMovingStopwatch.IsRunning)
